@@ -5,7 +5,9 @@
 	-webkit-fon-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+html{
+	scroll-behavior: smooth;
+}
 :root {
 	font-size: 62.5%;
 	--primary-color: hsl(170, 100%, 26%);
@@ -13,6 +15,7 @@
 	--paragraph: hsl(210, 9%, 31%);
 	--brand-beige: hsl(39, 100%, 97%);
 	--brand-light: hsl(148, 23%, 89%);
+	--bg-light:hsl(148, 14%,97%);
 	--nav-height: 7.2rem;
 }
 html,
@@ -21,6 +24,7 @@ body {
 	height: 100%;
 }
 body {
+	background: var(--bg-light);
 	font-family: 'DM Sans', sans-serif;
 	font-size: 1.6rem;
 	text-align: center;
@@ -28,33 +32,59 @@ body {
 }
 .wrapper {
 	width: 37.5rem;
-	margin-right: auto;
-	margin-left: auto;
+	margin-inline: auto;
 	padding-inline: 2.4rem;
 }
-
-header {
-	margin-top: calc(4.1rem + var(--nav-height));
+ul {
+	list-style: none;
 }
-
-header h4 {
-	font-size: 1.4rem;
+img{
+	max-width: 100%;
+}
+section{
+	padding-block: 10rem;
+}
+section h4{
+font-size: 1.4rem;
+	line-height: 150%;
 	color: var(--primary-color);
+	letter-spacing: .08rem;
+	text-transform: uppercase;
 	margin-bottom: 1.6rem;
+	font-weight: 700;
 }
-header h1 {
-	font-size: 3.4rem;
+section header h2{
+font-size: 3rem;
+line-height: 3.9rem ;
+color: var(--headline);
+
+}
+section header h1{
+font-size: 3.4rem;
 	color: var(--headline);
 	line-height: 130%;
 	margin-bottom: 2.4rem;
 }
-header p {
+section .content p{
+	color: var(--paragraph);
+	font-weight: 400;
+	font-size: 1.6rem;
+	 line-height: 150%;
+}
+/* HEADER */
+#home {
+	padding-top: calc(4.1rem + var(--nav-height));
+}
+
+
+
+#home p {
 	font-size: 1.8rem;
 	line-height: 150%;
 	color: var(--paragraph);
 	margin-bottom: 3.2rem;
 }
-header button {
+#home button {
 	margin-bottom: 6rem;
 	background: var(--primary-color);
 	border-radius: 4rem;
@@ -72,13 +102,13 @@ header button {
 	margin-left: auto;
 	gap: 1.6rem;
 }
-header > img {
+#home > img {
 	width: 26.4rem;
 	display: block;
 	margin-inline: auto;
 	object-position: 0 2rem;
 }
-header::before {
+#home::before {
 	content: '';
 	display: block;
 	width: 100%;
@@ -90,7 +120,7 @@ header::before {
 	background-color: var(--brand-light);
 }
 
-.stats {
+#home .stats {
 	width: 32.7rem;
 	padding-block: 4rem;
 	margin-inline: auto;
@@ -102,13 +132,13 @@ header::before {
 	border-radius: 0.6rem;
 	gap: 6rem;
 }
-.stat h3 {
+#home .stat h3 {
 	font-size: 4.8rem;
 	color: var(--headline);
 	line-height: 130%;
 	margin-bottom: 0.4rem;
 }
-.stat p {
+#home .stat p {
 	margin: 0;
 	color: var(--primary-color);
 	font-size: 1.6rem;
@@ -119,13 +149,13 @@ header::before {
 
 nav {
 	display: flex;
+width: 100vw;
 
-	padding: 1.6rem 2.4rem;
 	position: fixed;
 	height: var(--nav-height);
 	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
+	
+	z-index: 100;
 }
 nav .wrapper {
 	display: flex;
@@ -135,17 +165,15 @@ nav .wrapper {
 
 nav.scroll {
 	background: var(--primary-color);
-	width: 100vw;
+	
 }
-nav.scroll svg:nth-child(1) path {
+nav.scroll .logo path {
 	fill: #fff;
 }
 nav.scroll button path {
 	stroke: #fff;
 }
-ul {
-	list-style: none;
-}
+
 nav button {
 	background: none;
 	border: none;
@@ -156,7 +184,7 @@ body.menu-expanded {
 	overflow: hidden;
 }
 body.menu-expanded > :not(nav) {
-	display: none;
+	visibility: hidden;
 }
 .menu,
 .close-menu,
@@ -169,7 +197,9 @@ body.menu-expanded .close-menu {
 	opacity: 1;
 	visibility: visible;
 }
-
+.menu{
+transform: translateY(-100%);
+}
 body.menu-expanded .menu {
 	position: fixed;
 	top: 0;
@@ -178,11 +208,11 @@ body.menu-expanded .menu {
 	width: 100vw;
 	height: 100vh;
 	padding-top: var(--nav-height);
+	transition: transform 300ms;
+	transform: translateY(0);
 }
 
-body.menu-expanded nav {
-	position: relative;
-}
+
 .menu ul:nth-child(1) {
 	display: flex;
 	flex-direction: column;
@@ -224,7 +254,55 @@ body.menu-expanded nav button {
 body.menu-expanded .logo path {
 	fill: white;
 }
-/* ok */
+/*--------------- SERVICES------------  */
+
+#services header h2{
+	margin-bottom: 6rem;
+}
+#services .card{
+	padding: 2.4rem;
+	text-align: left;
+	background: #fff;
+	border: 1px solid var(--brand-light);
+	border-radius: .6rem;
+
+}
+#services .cards {
+display: flex;
+flex-direction: column;
+gap: 3.2rem;
+}
+#services .card h3{
+	margin-block: 1.6rem;
+}
+
+/* ----------ABOUT----------- */
+#about{
+	text-align: left;
+	background: var(--brand-beige );
+}
+#about header h2{
+	margin-bottom: 2.4rem;
+}
+
+#about .content p{
+	margin-top: 2.4rem;
+	margin-bottom: 6rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
