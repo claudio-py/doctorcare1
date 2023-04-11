@@ -1,22 +1,49 @@
+const navigation = document.getElementById('navigation')
 window.addEventListener('scroll', onScroll)
 onScroll()
 function onScroll() {
 	showNavOnScroll()
 	showBackToTopButton()
+	activateMenuAtCurrentSection(home)
+	activateMenuAtCurrentSection(services)
+	activateMenuAtCurrentSection(about)
+	activateMenuAtCurrentSection(contact)
 }
-function showNavOnScroll(){
+
+function activateMenuAtCurrentSection(section) {
+	const targetLine = scrollY + innerHeight / 2
+	const sectionTop = section.offsetTop
+	const sectionHeight = section.offsetHeight
+	const sectionTopReachOrPassedTargetLine = targetLine >= sectionTop 
+
+
+const sectionEndsAt = sectionTop + sectionHeight
+const sectionEndPassedTargetLine = sectionEndsAt <= targetLine
+
+const sectionBoundaries = sectionTopReachOrPassedTargetLine && !sectionEndPassedTargetLine
+const sectionId = section.getAttribute('id')
+const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`)
+menuElement.classList.remove('active')
+if(sectionBoundaries){
+menuElement.classList.add('active')
+}
+
+
+}
+
+function showNavOnScroll() {
 	if (scrollY > 0) {
-		nav.classList.add('scroll')
+		navigation.classList.add('scroll')
 	} else {
-		nav.classList.remove('scroll')
+		navigation.classList.remove('scroll')
 	}
 }
 
-function showBackToTopButton(){
+function showBackToTopButton() {
 	if (scrollY > 2000) {
-	backToTheTop.classList.add('show')
+		backToTheTop.classList.add('show')
 	} else {
-	backToTheTop.classList.remove('show')
+		backToTheTop.classList.remove('show')
 	}
 }
 
@@ -26,7 +53,6 @@ function openMenu() {
 function closeMenu() {
 	document.body.classList.remove('menu-expanded')
 }
-
 
 // scrollreveal
 ScrollReveal({
@@ -44,4 +70,3 @@ ScrollReveal({
  #about header,
  #about .content
  `)
-
